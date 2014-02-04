@@ -7,3 +7,8 @@ Feature: Admin Dashboard
   Scenario:
     When I go to /admin/copy_tests
     Then I should see the text "Tests"
+    When I follow "New Test"
+    And fill in "Name" with "Test 1"
+    And press "Create Copy Test"
+    Then I should see the text "Tests"
+    And I should see the text "Test 1"

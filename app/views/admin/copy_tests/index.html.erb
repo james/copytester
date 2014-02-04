@@ -1,0 +1,9 @@
+<h1>Tests</h1>
+
+<ul>
+  <%= @copy_tests.each do |copy_test| %>
+    <li><%= copy_test.name %>
+  <% end %>
+</ul>
+
+<%= link_to "New Test", new_admin_copy_test_path %>
