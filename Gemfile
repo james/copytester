@@ -34,7 +34,8 @@ group :development, :test do
 end
 
 group :test do
-	gem 'cucumber-rails', :require => false
+  gem 'cucumber-rails', :require => false
+  gem 'database_cleaner'
 end
 
 # Use unicorn as the app server
