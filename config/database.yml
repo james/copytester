@@ -19,7 +19,7 @@ development:
   encoding: unicode
   database: copytester_development
   pool: 5
-  username: copytester
+  username: james
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -48,7 +48,7 @@ test:
   encoding: unicode
   database: copytester_test
   pool: 5
-  username: copytester
+  username: james
   password:
 
 production:
