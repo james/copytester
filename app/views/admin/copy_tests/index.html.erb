@@ -2,7 +2,7 @@
 
 <ul>
   <% @copy_tests.each do |copy_test| %>
-    <li><%= copy_test.name %></li>
+    <li><%= copy_test.name %> <%= link_to "edit", edit_admin_copy_test_path(copy_test) %></li>
   <% end %>
 </ul>
 
