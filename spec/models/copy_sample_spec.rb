@@ -1,5 +1,8 @@
 require 'spec_helper'
 
 describe CopySample do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "should markup copy" do
+    sample = CopySample.new(:copy => "# Test")
+    sample.copy_markup.should == "<h1>Test</h1>\n"
+  end
 end
