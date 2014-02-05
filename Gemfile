@@ -31,6 +31,7 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'guard-cucumber'
 end
 
 group :test do
