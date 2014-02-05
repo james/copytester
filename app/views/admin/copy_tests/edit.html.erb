@@ -1,5 +1,22 @@
+<h1>Editing <%= @copy_test.name %></h1>
 <%= form_for [:admin, @copy_test] do |copy_test_form| %>
   <%= copy_test_form.label :name %>
   <%= copy_test_form.text_field :name %>
   <%= copy_test_form.submit "Save Copy Test" %>
+<% end %>
+
+<h1>Copy Texts</h1>
+
+<ul>
+  <%= @copy_test.copy_samples.each do |copy_sample| %>
+    <li><%= copy_sample.name %>: <%= copy_sample.copy %></li>
+  <% end %>
+</ul>
+
+<%= form_for [:admin, @copy_test, @copy_test.copy_samples.build] do |copy_test_form| %>
+  <%= copy_test_form.label :name, "Copy Text #{@copy_test.copy_samples.count + 1} Name" %>
+  <%= copy_test_form.text_field :name %>
+  <%= copy_test_form.label :copy %>
+  <%= copy_test_form.text_field :copy %>
+  <%= copy_test_form.submit "Create Copy Sample" %>
 <% end %>
