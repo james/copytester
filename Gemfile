@@ -35,6 +35,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'guard-cucumber'
   gem 'guard-rspec', require: false
+  gem 'launchy'
 end
 
 group :test do
