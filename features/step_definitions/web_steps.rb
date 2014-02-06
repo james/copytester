@@ -1,10 +1,6 @@
 require 'uri'
 
 Given /^pending$/ do
-  # Essentially allows marking an entire scenario as "pending", as opposed to just a single step
-  # Useful when you have multiple tests failing, and you want to filter out a few, but still see
-  # "Pending" in the cucumber results
-  # Ref.: http://stackoverflow.com/questions/3064078/how-do-you-mark-a-cucumber-scenario-as-pending
   pending
 end
 
@@ -111,4 +107,8 @@ end
 
 When /^I accept the confirmation dialog box$/ do
   page.driver.browser.switch_to.alert.accept
+end
+
+Then(/^I should see the html "(.*?)"$/) do |html_expected|
+  page.body.should include(html_expected)
 end

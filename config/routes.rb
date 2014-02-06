@@ -47,11 +47,15 @@ Copytester::Application.routes.draw do
   #   resources :posts, concerns: :toggleable
   #   resources :photos, concerns: :toggleable
 
-    namespace :admin do
-      # Directs /admin/products/* to Admin::ProductsController
-      # (app/controllers/admin/products_controller.rb)
-      resources :copy_tests do
-        resources :copy_samples
-      end
+  resources :copy_tests do
+    resources :copy_samples
+  end
+
+  namespace :admin do
+    # Directs /admin/products/* to Admin::ProductsController
+    # (app/controllers/admin/products_controller.rb)
+    resources :copy_tests do
+      resources :copy_samples
     end
+  end
 end
