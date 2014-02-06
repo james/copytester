@@ -9,7 +9,7 @@
 
 <ul>
   <%= @copy_test.copy_samples.each do |copy_sample| %>
-    <li><%= copy_sample.name %>: <%= copy_sample.copy %></li>
+    <li><%= copy_sample.name %>: <%= copy_sample.copy %> <%= link_to "edit", edit_admin_copy_test_copy_sample_path(@copy_test, copy_sample) %></li>
   <% end %>
 </ul>
 
