@@ -1,3 +1,27 @@
-<%= @copy_test.name %>
-
-<%= @copy_sample.copy_markup.html_safe %>
+<div id="test">
+  <div id="intro">
+    <h1>
+      Welcome to a GDS copy test!
+    </h1>
+    <p>
+      Hello. You are here as you have been asked to participate in a test of some copy.
+    </p>
+    <p>
+      When you click "Let's Begin" you will be shown some text that we want to get some feedback on. Read it at your own pace, and when you are done, click 'Finished' and we will ask you some questions about it. Don't worry, there are no wrong answers!
+    </p>
+    <p class="next-button">
+      <a type="button" class="start-test btn btn-lg btn-primary" href="#copy">Let's Begin</a>
+    </p>
+  </div>
+  <div id="copy">
+    <%= @copy_sample.copy_markup.html_safe %>
+    <p class="next-button">
+      <a type="button" class="finish-test btn btn-lg btn-primary" href="#copy">Finished</a>
+    </p>
+  </div>
+  <div id="questions">
+    <p>
+      We don't have any questions yet!
+    </p>
+  </div>
+</div>
