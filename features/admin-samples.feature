@@ -14,7 +14,6 @@ Feature: Admin for copy texts
     And press "Create Copy Sample"
     Then I should see the text "Test 1"
     And I should see the text "Copy 1"
-    When I follow "edit"
     And fill in "Copy Text Name" with "Copy 1 edited"
     And press "Save Copy Sample"
     Then I should see the text "Test 1"

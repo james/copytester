@@ -55,7 +55,12 @@ Copytester::Application.routes.draw do
     # Directs /admin/products/* to Admin::ProductsController
     # (app/controllers/admin/products_controller.rb)
     resources :copy_tests do
-      resources :copy_samples
+      resources :copy_samples do
+        resources :questions do
+          resources :question_answers do
+          end
+        end
+      end
     end
   end
 end
