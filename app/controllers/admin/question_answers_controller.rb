@@ -7,7 +7,12 @@ class Admin::QuestionAnswersController < ApplicationController
     redirect_to edit_admin_copy_test_question_path(@copy_test, @question)
   end
   def edit
-    @question = @copy_test.questions.find(params[:id])
+    @question_answer = @question.question_answers.find(params[:id])
+  end
+  def update
+    @question_answer = @question.question_answers.find(params[:id])
+    @question_answer.update_attributes(params[:question_answer].permit(:answer))    
+    redirect_to edit_admin_copy_test_question_path(@copy_test, @question)
   end
   private
   def find_test

@@ -7,16 +7,17 @@
 
 <h1>Copy Texts</h1>
 
-<ul>
-  <% @copy_test.copy_samples.each do |copy_sample| %>
-    <li><%= copy_sample.name %>: <%= copy_sample.copy %> <%= link_to "edit", edit_admin_copy_test_copy_sample_path(@copy_test, copy_sample) %></li>
-  <% end %>
-</ul>
+<% @copy_test.copy_samples.each do |copy_sample| %>
+  <div>
+    <h2><%= copy_sample.name %></h2>
+    <%= copy_sample.copy_markup %>
+    <p><%= link_to "edit", edit_admin_copy_test_copy_sample_path(@copy_test, copy_sample) %></p>
+  </div>
+<% end %>
 
-<%= form_for [:admin, @copy_test, @copy_test.copy_samples.build] do |copy_test_form| %>
-  <%= copy_test_form.label :name, "Copy Text #{@copy_test.copy_samples.count + 1} Name" %>
+<h2>Add new Copy Text</h2>
+<%= bootstrap_form_for [:admin, @copy_test, @copy_test.copy_samples.build] do |copy_test_form| %>
   <%= copy_test_form.text_field :name %>
-  <%= copy_test_form.label :copy %>
   <%= copy_test_form.text_area :copy %>
   <%= copy_test_form.submit "Create Copy Sample" %>
 <% end %>
@@ -25,12 +26,18 @@
 
 <ul>
   <% @copy_test.questions.each do |question| %>
-    <li><%= question.question %><%= link_to "edit", edit_admin_copy_test_question_path(@copy_test, question) %> </li>
+    <li>
+      <%= question.question %> (<%= link_to "edit", edit_admin_copy_test_question_path(@copy_test, question) %>)
+      <ul>
+        <% question.question_answers.each do |question_answer| %>
+          <li><%= question_answer.answer %></li>
+        <% end %>
+      </ul>
+    </li>
   <% end %>
 </ul>
 
-<%= form_for [:admin, @copy_test, @copy_test.questions.build] do |copy_test_form| %>
-  <%= copy_test_form.label :question, "Question" %>
+<%= bootstrap_form_for [:admin, @copy_test, @copy_test.questions.build] do |copy_test_form| %>
   <%= copy_test_form.text_field :question %>
   <%= copy_test_form.submit "Create Question" %>
 <% end %>
