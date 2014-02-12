@@ -1,0 +1,24 @@
+<h1>Results for <%= @copy_test.name %></h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Average Time taken</th>
+    <th>Average Trust Score</th>
+  </tr>
+  <% @copy_test.copy_samples.each do |copy_sample| %>
+    <tr>
+      <td><%= copy_sample.name %></td>
+      <td>
+        <% if copy_sample.average_time_taken %>
+          <%= copy_sample.average_time_taken/1000 %> seconds
+        <% else %>
+          N/A
+        <% end %>
+      </td>
+      <td>
+        <%= copy_sample.average_trust_rating || "N/A" %>
+      </td>
+    </tr>
+  <% end %>
+</table>

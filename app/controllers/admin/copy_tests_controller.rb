@@ -2,6 +2,9 @@ class Admin::CopyTestsController < ApplicationController
   def index
     @copy_tests = CopyTest.all
   end
+  def show
+    @copy_test = CopyTest.find(params[:id])    
+  end
   def new
     @copy_test = CopyTest.new
   end

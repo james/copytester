@@ -10,4 +10,10 @@ class CopySample < ActiveRecord::Base
   def questions
     copy_test.questions
   end
+  def average_time_taken
+    responses.average(:time_taken)
+  end
+  def average_trust_rating
+    responses.average(:trust_rating)
+  end
 end
