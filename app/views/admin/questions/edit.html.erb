@@ -1,9 +1,14 @@
 <h1>Editing <%= @copy_test.name %> > <%= @question.question %></h1>
 
-<%= form_for [:admin, @copy_test, @question] do |copy_test_form| %>
-  <%= copy_test_form.label :question, "Question" %>
-  <%= copy_test_form.text_field :question %>
-  <%= copy_test_form.submit "Save Question" %>
+<%= form_for [:admin, @copy_test, @question] do |question_form| %>
+  <%= question_form.label :question, "Question" %>
+  <%= question_form.text_field :question %>
+  <p>Correct Answer:</p>
+  <% @question.question_answers.each do |question_answer| %>
+    <%= question_form.radio_button :correct_question_answer_id, question_answer.id %>
+    <%= question_form.label :correct_question_answer_id, question_answer.answer, :value => question_answer.id %>
+  <% end %>
+  <%= question_form.submit "Save Question" %>
 <% end %>
 
 <ul>

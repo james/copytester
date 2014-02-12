@@ -18,4 +18,7 @@ Feature: Admin for questions
     # create answer
     When I fill in "Answer" with "January 2002 to December 2007"
     And I press "Create Answer"
+    # update answer
     Then I should see the text "January 2002 to December 2007"
+    When I choose "January 2002 to December 2007"
+    And I press "Save Question"
