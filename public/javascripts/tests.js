@@ -1,4 +1,4 @@
-var time_start, time_end;
+var time_start, time_end, time_taken;
 $(function() {
   $("#test > div").hide();
   $("#test #intro").show();
@@ -11,6 +11,7 @@ $(function() {
     time_end =  Number(new Date());
     $("#test #copy").hide();
     $("#test #questions").show();
-    console.log(time_end - time_start);
+    time_taken = time_end - time_start;
+    $("#response_time_taken").val(time_taken);
   });  
 });

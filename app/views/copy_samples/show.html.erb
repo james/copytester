@@ -1,26 +1,26 @@
-<div id="test">
-  <div id="intro">
-    <h1>
-      Welcome to a GDS copy test!
-    </h1>
-    <p>
-      Hello. You are here as you have been asked to participate in a test of some copy.
-    </p>
-    <p>
-      When you click "Let's Begin" you will be shown some text that we want to get some feedback on. Read it at your own pace, and when you are done, click 'Finished' and we will ask you some questions about it. Don't worry, there are no wrong answers!
-    </p>
-    <p class="next-button">
-      <a type="button" class="start-test btn btn-lg btn-primary" href="#copy">Let's Begin</a>
-    </p>
-  </div>
-  <div id="copy">
-    <%= @copy_sample.copy_markup.html_safe %>
-    <p class="next-button">
-      <a type="button" class="finish-test btn btn-lg btn-primary" href="#questions">Finished</a>
-    </p>
-  </div>
-  <div id="questions">
-    <%= form_for [@copy_test, @copy_sample, @response] do |response_form| %>
+<%= form_for [@copy_test, @copy_sample, @response] do |response_form| %>
+  <div id="test">
+    <div id="intro">
+      <h1>
+        Welcome to a GDS copy test!
+      </h1>
+      <p>
+        Hello. You are here as you have been asked to participate in a test of some copy.
+      </p>
+      <p>
+        When you click "Let's Begin" you will be shown some text that we want to get some feedback on. Read it at your own pace, and when you are done, click 'Finished' and we will ask you some questions about it. Don't worry, there are no wrong answers!
+      </p>
+      <p class="next-button">
+        <a type="button" class="start-test btn btn-lg btn-primary" href="#copy">Let's Begin</a>
+      </p>
+    </div>
+    <div id="copy">
+      <%= @copy_sample.copy_markup.html_safe %>
+      <p class="next-button">
+        <a type="button" class="finish-test btn btn-lg btn-primary" href="#questions">Finished</a>
+      </p>
+    </div>
+    <div id="questions">
       <% @copy_test.questions.each do |question| %>
         <%= response_form.fields_for :response_answers, @response.response_answers.build do |response_answer_form| %>
           <% question.question_answers.each do |question_answer| %>
@@ -30,6 +30,7 @@
         <% end %>
       <% end %>
       <%= response_form.submit "Save answers" %>
-    <% end %>
+    </div>
   </div>
-</div>
+  <%= response_form.hidden_field :time_taken, :value => 0 %>
+<% end %>
