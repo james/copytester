@@ -54,8 +54,7 @@ Copytester::Application.routes.draw do
   end
 
   namespace :admin do
-    # Directs /admin/products/* to Admin::ProductsController
-    # (app/controllers/admin/products_controller.rb)
+    root 'copy_tests#index'
     resources :copy_tests do
       resources :copy_samples
       resources :questions do
