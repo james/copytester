@@ -7,15 +7,3 @@
   <%= copy_test_form.text_field :copy %>
   <%= copy_test_form.submit "Save Copy Sample" %>
 <% end %>
-
-<ul>
-  <% @copy_sample.questions.each do |question| %>
-    <li><%= question.question %><%= link_to "edit", edit_admin_copy_test_copy_sample_question_path(@copy_test, @copy_sample, question) %> </li>
-  <% end %>
-</ul>
-
-<%= form_for [:admin, @copy_test, @copy_sample, @copy_sample.questions.build] do |copy_test_form| %>
-  <%= copy_test_form.label :question, "Question" %>
-  <%= copy_test_form.text_field :question %>
-  <%= copy_test_form.submit "Create Question" %>
-<% end %>

@@ -1,6 +1,6 @@
-<h1>Editing <%= @copy_test.name %> > <%= @copy_sample.name %> > <%= @question.question %></h1>
+<h1>Editing <%= @copy_test.name %> > <%= @question.question %></h1>
 
-<%= form_for [:admin, @copy_test, @copy_sample, @question] do |copy_test_form| %>
+<%= form_for [:admin, @copy_test, @question] do |copy_test_form| %>
   <%= copy_test_form.label :question, "Question" %>
   <%= copy_test_form.text_field :question %>
   <%= copy_test_form.submit "Save Question" %>
@@ -8,11 +8,11 @@
 
 <ul>
   <% @question.question_answers.each do |answer| %>
-    <li><%= answer.answer %><%= link_to "edit", edit_admin_copy_test_copy_sample_question_question_answer_path(@copy_test, @copy_sample, @question, answer) %> </li>
+    <li><%= answer.answer %><%= link_to "edit", edit_admin_copy_test_question_question_answer_path(@copy_test, @question, answer) %> </li>
   <% end %>
 </ul>
 
-<%= form_for [:admin, @copy_test, @copy_sample, @question, @question.question_answers.build] do |copy_test_form| %>
+<%= form_for [:admin, @copy_test, @question, @question.question_answers.build] do |copy_test_form| %>
   <%= copy_test_form.label :answer, "Answer" %>
   <%= copy_test_form.text_field :answer %>
   <%= copy_test_form.submit "Create Answer" %>
