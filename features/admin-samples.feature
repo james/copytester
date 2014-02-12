@@ -10,7 +10,7 @@ Feature: Admin for copy texts
     And fill in "Name" with "Test 1"
     And press "Create Copy Test"
     And I follow "edit"
-    And fill in "Copy Text 1 Name" with "Copy 1"
+    And fill in "Name" with "Copy 1"
     And press "Create Copy Sample"
     Then I should see the text "Test 1"
     And I should see the text "Copy 1"

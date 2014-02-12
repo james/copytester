@@ -13,7 +13,7 @@ Feature: Admin Dashboard
     Then I should see the text "Tests"
     And I should see the text "Test 1"
     When I follow "edit"
-    And fill in "Name" with "Test 1 edited"
+    And fill in "Test Name" with "Test 1 edited"
     And press "Save Copy Test"
     Then I should see the text "Tests"
     And I should see the text "Test 1 edited"
