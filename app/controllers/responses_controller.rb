@@ -2,7 +2,7 @@ class ResponsesController < ApplicationController
   before_filter :find_copy_test
   before_filter :find_copy_sample
   def create
-    @response = @copy_sample.responses.create!(params[:response].permit([{:response_answers_attributes => [:question_answer_id]}, :time_taken, :browser_agent_string]))
+    @response = @copy_sample.responses.create!(params[:response].permit([{:response_answers_attributes => [:question_answer_id]}, :time_taken, :browser_agent_string, :trust_rating]))
     render :text => "Thankyou"
   end
   private

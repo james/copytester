@@ -15,12 +15,14 @@
       </p>
     </div>
     <div id="copy">
+      <h1>Please read the copy below and click "Finished" when done</h1>
       <%= @copy_sample.copy_markup.html_safe %>
       <p class="next-button">
         <a type="button" class="finish-test btn btn-lg btn-primary" href="#questions">Finished</a>
       </p>
     </div>
     <div id="questions">
+      <h1>Please answer these questions to your best of your ability</h1>
       <% @copy_test.questions.each do |question| %>
         <%= response_form.fields_for :response_answers, @response.response_answers.build do |response_answer_form| %>
           <% question.question_answers.each do |question_answer| %>
@@ -29,7 +31,20 @@
           <% end %>
         <% end %>
       <% end %>
-      <%= response_form.submit "Save answers" %>
+      <p class="next-button">
+        <a type="button" class="finish-questions btn btn-lg btn-primary" href="#trust_survey">Next</a>
+      </p>
+    </div>
+    <div id="trust_survey">
+      <h1>Please fill in our trust questions</h1>
+      <p>How much did you trust this?</p>
+      <% [1,2,3,4,5].each do |i| %>
+        <%= response_form.radio_button :trust_rating, i %>
+        <%= response_form.label :trust_rating, i, :value => i %>
+      <% end %>
+      <p>
+        <%= response_form.submit "Save answers", :class => 'btn btn-lg btn-primary' %>
+      </p>
     </div>
   </div>
   <%= response_form.hidden_field :time_taken, :value => 0 %>

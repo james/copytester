@@ -12,6 +12,7 @@ Feature: Viewing Test Sample
     When I view Copy Sample "Copy Sample 1"
     Then I should see the html "<h1>This is the test</h1>"
     When I choose "A test"
+    And I choose "5"
     And I press "Save answers"
     Then I should see the text "Thankyou"
     And "A test" should have been chosen 1 times

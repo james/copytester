@@ -15,4 +15,9 @@ $(function() {
     $("#response_time_taken").val(time_taken);
     $("#response_browser_agent_string").val(navigator.userAgent);
   });  
+  $("#test .finish-questions").on("click", function () {
+    time_start =  Number(new Date());
+    $("#test #questions").hide();
+    $("#test #trust_survey").show();
+  });
 });
