@@ -47,6 +47,7 @@ Copytester::Application.routes.draw do
   #   resources :posts, concerns: :toggleable
   #   resources :photos, concerns: :toggleable
 
+  root 'copy_tests#index'
   resources :copy_tests do
     resources :copy_samples do
       resources :responses
