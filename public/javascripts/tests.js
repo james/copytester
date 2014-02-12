@@ -13,5 +13,6 @@ $(function() {
     $("#test #questions").show();
     time_taken = time_end - time_start;
     $("#response_time_taken").val(time_taken);
+    $("#response_browser_agent_string").val(navigator.userAgent);
   });  
 });

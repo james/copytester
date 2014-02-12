@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140212105943) do
+ActiveRecord::Schema.define(version: 20140212135500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20140212105943) do
     t.integer  "time_taken"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "browser_agent_string"
   end
 
   add_index "responses", ["copy_sample_id"], name: "index_responses_on_copy_sample_id", using: :btree
