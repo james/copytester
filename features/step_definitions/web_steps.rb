@@ -16,6 +16,10 @@ When /^I select "([^\"]*)" from "([^\"]*)"$/ do |value, dropdown|
   select(value, from: dropdown) 
 end
 
+When /^I choose "([^\"]*)"$/ do |value|
+  choose(value) 
+end
+
 Then /^I should see the text "([^"]*)"$/ do |text|
   page.should have_content(text)
 end

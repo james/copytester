@@ -20,8 +20,16 @@
     </p>
   </div>
   <div id="questions">
-    <p>
-      We don't have any questions yet!
-    </p>
+    <%= form_for [@copy_test, @copy_sample, @response] do |response_form| %>
+      <% @copy_test.questions.each do |question| %>
+        <%= response_form.fields_for :response_answers, @response.response_answers.build do |response_answer_form| %>
+          <% question.question_answers.each do |question_answer| %>
+            <%= response_answer_form.label :question_answer_id, question_answer.answer, :value => question_answer.id %>
+            <%= response_answer_form.radio_button :question_answer_id, question_answer.id %>
+          <% end %>
+        <% end %>
+      <% end %>
+      <%= response_form.submit "Save answers" %>
+    <% end %>
   </div>
 </div>

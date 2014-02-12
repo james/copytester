@@ -48,7 +48,9 @@ Copytester::Application.routes.draw do
   #   resources :photos, concerns: :toggleable
 
   resources :copy_tests do
-    resources :copy_samples
+    resources :copy_samples do
+      resources :responses
+    end
   end
 
   namespace :admin do
