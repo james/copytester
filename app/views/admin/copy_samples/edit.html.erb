@@ -1,9 +1,7 @@
 <h1>Editing <%= @copy_test.name %> > <%= @copy_sample.name %></h1>
 
-<%= form_for [:admin, @copy_test, @copy_sample] do |copy_test_form| %>
-  <%= copy_test_form.label :name, "Copy Text Name" %>
+<%= bootstrap_form_for [:admin, @copy_test, @copy_sample] do |copy_test_form| %>
   <%= copy_test_form.text_field :name %>
-  <%= copy_test_form.label :copy %>
   <%= copy_test_form.text_area :copy %>
   <%= copy_test_form.submit "Save Copy Sample" %>
 <% end %>
