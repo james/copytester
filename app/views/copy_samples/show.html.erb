@@ -24,6 +24,7 @@
     <div id="questions">
       <h1>Please answer these questions to your best of your ability</h1>
       <% @copy_test.questions.each do |question| %>
+        <%= question.question %>
         <%= response_form.fields_for :response_answers, @response.response_answers.build do |response_answer_form| %>
           <% question.question_answers.each do |question_answer| %>
             <%= response_answer_form.label :question_answer_id, question_answer.answer, :value => question_answer.id %>
