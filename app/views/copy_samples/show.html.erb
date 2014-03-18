@@ -23,6 +23,7 @@
     </div>
     <div id="questions">
       <h1>Please answer these questions to your best of your ability</h1>
+      <%= @copy_sample.copy_markup.html_safe %>
       <% @copy_test.questions.each do |question| %>
         <%= question.question %>
         <%= response_form.fields_for :response_answers, @response.response_answers.build do |response_answer_form| %>
@@ -38,6 +39,7 @@
     </div>
     <div id="trust_survey">
       <h1>Please fill in our trust questions</h1>
+      <%= @copy_sample.copy_markup.html_safe %>
       <p>How much did you trust this?</p>
       <% [1,2,3,4,5].each do |i| %>
         <%= response_form.radio_button :trust_rating, i %>
