@@ -1,8 +1,11 @@
-<h1>
-  Content Experiments
-</h1>
+<div class="wrapper">
+  <h1>
+    Thank you.
+  </h1>
 
-<p>All done. Thank you!</p>
-<% if @next_copy_test %>
-  <p>We have lots more experiments, so if you have the time, <%= link_to "please do another one", copy_test_path(@next_copy_test) %>.
-<% end %>
+  <p>That's it, all done.</p>
+  <p>You've helped us to make GOV.UK simpler, clearer and faster.</p>
+  <% if @next_copy_test %>
+    <p>We have lots more experiments, so if you have the time, <%= link_to "please do another one", copy_test_path(@next_copy_test) %>.
+  <% end %>
+</div>
