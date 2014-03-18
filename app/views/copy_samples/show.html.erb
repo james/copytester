@@ -21,13 +21,8 @@
       <div id="copy">
         <p>Please read the content below carefully and when you are finished reading, select the 'finished reading' button and we will ask you some questions.</p>
         <%= @copy_sample.copy_markup.html_safe %>
-        <p class="next-button">
-          <a type="button" class="finish-test btn btn-lg btn-primary" href="#questions">Finished reading</a>
-        </p>
-      </div>
-      <div id="questions">
+
         <p>Now, please answer this question to the best of your ability.</p>
-        <%= @copy_sample.copy_markup.html_safe %>
         <% @copy_test.questions.each do |question| %>
           <p><%= question.question %></p>
           <%= response_form.fields_for :response_answers, @response.response_answers.build do |response_answer_form| %>
