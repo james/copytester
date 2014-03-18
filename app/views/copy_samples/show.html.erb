@@ -1,60 +1,62 @@
-<%= form_for [@copy_test, @copy_sample, @response] do |response_form| %>
-  <h1>
-    Content Experiments
-  </h1>
-  <div id="test">
-    <div id="intro">
-      <p>
-        Thanks for taking the time to help us with this content experiment.
-      </p>
-      <p>
-        We are doing these experiments to help us make sure that information on GOV.UK is simpler, clearer and faster.
-      </p>
-      <p>
-        This will only take a minute or two of your time. Don't worry, there are no wrong answers!
-      </p>
-      <p class="next-button">
-        <a type="button" class="start-test btn btn-lg btn-primary" href="#copy">Start now</a>
-      </p>
-    </div>
-    <div id="copy">
-      <p>Please read the content below carefully and when you are finished reading, select the 'finished reading' button and we will ask you some questions.</p>
-      <%= @copy_sample.copy_markup.html_safe %>
-      <p class="next-button">
-        <a type="button" class="finish-test btn btn-lg btn-primary" href="#questions">Finished reading</a>
-      </p>
-    </div>
-    <div id="questions">
-      <p>Now, please answer this question to the best of your ability.</p>
-      <%= @copy_sample.copy_markup.html_safe %>
-      <% @copy_test.questions.each do |question| %>
-        <p><%= question.question %></p>
-        <%= response_form.fields_for :response_answers, @response.response_answers.build do |response_answer_form| %>
-          <% question.question_answers.each do |question_answer| %>
-            <p>
-              <%= response_answer_form.radio_button :question_answer_id, question_answer.id %>
-              <%= response_answer_form.label :question_answer_id, question_answer.answer, :value => question_answer.id %>
-            </p>
+<div class="wrapper">
+  <%= form_for [@copy_test, @copy_sample, @response] do |response_form| %>
+    <h1>
+      Content Experiments
+    </h1>
+    <div id="test">
+      <div id="intro">
+        <p>
+          Thanks for taking the time to help us with this content experiment.
+        </p>
+        <p>
+          We are doing these experiments to help us make sure that information on GOV.UK is simpler, clearer and faster.
+        </p>
+        <p>
+          This will only take a minute or two of your time. Don't worry, there are no wrong answers!
+        </p>
+        <p class="next-button">
+          <a type="button" class="start-test btn btn-lg btn-primary" href="#copy">Start now</a>
+        </p>
+      </div>
+      <div id="copy">
+        <p>Please read the content below carefully and when you are finished reading, select the 'finished reading' button and we will ask you some questions.</p>
+        <%= @copy_sample.copy_markup.html_safe %>
+        <p class="next-button">
+          <a type="button" class="finish-test btn btn-lg btn-primary" href="#questions">Finished reading</a>
+        </p>
+      </div>
+      <div id="questions">
+        <p>Now, please answer this question to the best of your ability.</p>
+        <%= @copy_sample.copy_markup.html_safe %>
+        <% @copy_test.questions.each do |question| %>
+          <p><%= question.question %></p>
+          <%= response_form.fields_for :response_answers, @response.response_answers.build do |response_answer_form| %>
+            <% question.question_answers.each do |question_answer| %>
+              <p>
+                <%= response_answer_form.radio_button :question_answer_id, question_answer.id %>
+                <%= response_answer_form.label :question_answer_id, question_answer.answer, :value => question_answer.id %>
+              </p>
+            <% end %>
           <% end %>
         <% end %>
-      <% end %>
-      <p class="next-button">
-        <a type="button" class="finish-questions btn btn-lg btn-primary" href="#trust_survey">Next</a>
-      </p>
+        <p class="next-button">
+          <a type="button" class="finish-questions btn btn-lg btn-primary" href="#trust_survey">Next</a>
+        </p>
+      </div>
+      <div id="trust_survey">
+        <p>Now, please answer this question to the best of your ability.</p>
+        <%= @copy_sample.copy_markup.html_safe %>
+        <p>The content above feels very trustworthy.</p>
+        <% ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"].each_with_index do |s, i| %>
+          <%= response_form.radio_button :trust_rating, i + 1 %>
+          <%= response_form.label :trust_rating, s, :value => i + 1 %>
+        <% end %>
+        <p>
+          <%= response_form.submit "Save answers", :class => 'btn btn-lg btn-primary' %>
+        </p>
+      </div>
     </div>
-    <div id="trust_survey">
-      <p>Now, please answer this question to the best of your ability.</p>
-      <%= @copy_sample.copy_markup.html_safe %>
-      <p>The content above feels very trustworthy.</p>
-      <% ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"].each_with_index do |s, i| %>
-        <%= response_form.radio_button :trust_rating, i + 1 %>
-        <%= response_form.label :trust_rating, s, :value => i + 1 %>
-      <% end %>
-      <p>
-        <%= response_form.submit "Save answers", :class => 'btn btn-lg btn-primary' %>
-      </p>
-    </div>
-  </div>
-  <%= response_form.hidden_field :time_taken, :value => 0 %>
-  <%= response_form.hidden_field :browser_agent_string, :value => 0 %>
-<% end %>
+    <%= response_form.hidden_field :time_taken, :value => 0 %>
+    <%= response_form.hidden_field :browser_agent_string, :value => 0 %>
+  <% end %>
+</div>

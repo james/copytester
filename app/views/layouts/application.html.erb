@@ -1,27 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>Copytester</title>
-
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
-  <link rel="stylesheet" href="/stylesheets/application.css">
-
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-  <div class="container">
-    <%= yield %>
-  </div>
-
-  <script src="https://code.jquery.com/jquery.js"></script>
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-  <script src="/javascripts/tests.js"></script>
-
-</body>
-</html>
+<% content_for :head do %>
+  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag "application" %>
+<% end %>
+<%= render template: "layouts/govuk_template" %>
