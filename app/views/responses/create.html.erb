@@ -1,5 +1,8 @@
-Thank you.
+<h1>
+  Content Experiments
+</h1>
 
+<p>All done. Thank you!</p>
 <% if @next_copy_test %>
-  <%= link_to "Take another test?", copy_test_path(@next_copy_test) %>
+  <p>We have lots more experiments, so if you have the time, <%= link_to "please do another one", copy_test_path(@next_copy_test) %>.
 <% end %>

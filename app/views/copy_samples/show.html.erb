@@ -1,35 +1,40 @@
 <%= form_for [@copy_test, @copy_sample, @response] do |response_form| %>
+  <h1>
+    Content Experiments
+  </h1>
   <div id="test">
     <div id="intro">
-      <h1>
-        Welcome to a GDS copy test!
-      </h1>
       <p>
-        Hello. You are here as you have been asked to participate in a test of some copy.
+        Thanks for taking the time to help us with this content experiment.
       </p>
       <p>
-        When you click "Let's Begin" you will be shown some text that we want to get some feedback on. Read it at your own pace, and when you are done, click 'Finished' and we will ask you some questions about it. Don't worry, there are no wrong answers!
+        We are doing these experiments to help us make sure that information on GOV.UK is simpler, clearer and faster.
+      </p>
+      <p>
+        This will only take a minute or two of your time. Don't worry, there are no wrong answers!
       </p>
       <p class="next-button">
-        <a type="button" class="start-test btn btn-lg btn-primary" href="#copy">Let's Begin</a>
+        <a type="button" class="start-test btn btn-lg btn-primary" href="#copy">Start now</a>
       </p>
     </div>
     <div id="copy">
-      <h1>Please read the copy below and click "Finished" when done</h1>
+      <p>Please read the content below carefully and when you are finished reading, select the 'finished reading' button and we will ask you some questions.</p>
       <%= @copy_sample.copy_markup.html_safe %>
       <p class="next-button">
-        <a type="button" class="finish-test btn btn-lg btn-primary" href="#questions">Finished</a>
+        <a type="button" class="finish-test btn btn-lg btn-primary" href="#questions">Finished reading</a>
       </p>
     </div>
     <div id="questions">
-      <h1>Please answer these questions to your best of your ability</h1>
+      <p>Now, please answer this question to the best of your ability.</p>
       <%= @copy_sample.copy_markup.html_safe %>
       <% @copy_test.questions.each do |question| %>
-        <%= question.question %>
+        <p><%= question.question %></p>
         <%= response_form.fields_for :response_answers, @response.response_answers.build do |response_answer_form| %>
           <% question.question_answers.each do |question_answer| %>
-            <%= response_answer_form.label :question_answer_id, question_answer.answer, :value => question_answer.id %>
-            <%= response_answer_form.radio_button :question_answer_id, question_answer.id %>
+            <p>
+              <%= response_answer_form.radio_button :question_answer_id, question_answer.id %>
+              <%= response_answer_form.label :question_answer_id, question_answer.answer, :value => question_answer.id %>
+            </p>
           <% end %>
         <% end %>
       <% end %>
@@ -38,12 +43,12 @@
       </p>
     </div>
     <div id="trust_survey">
-      <h1>Please fill in our trust questions</h1>
+      <p>Now, please answer this question to the best of your ability.</p>
       <%= @copy_sample.copy_markup.html_safe %>
-      <p>How much did you trust this?</p>
-      <% [1,2,3,4,5].each do |i| %>
-        <%= response_form.radio_button :trust_rating, i %>
-        <%= response_form.label :trust_rating, i, :value => i %>
+      <p>The content above feels very trustworthy.</p>
+      <% ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"].each_with_index do |s, i| %>
+        <%= response_form.radio_button :trust_rating, i + 1 %>
+        <%= response_form.label :trust_rating, s, :value => i + 1 %>
       <% end %>
       <p>
         <%= response_form.submit "Save answers", :class => 'btn btn-lg btn-primary' %>
