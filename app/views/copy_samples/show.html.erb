@@ -19,33 +19,41 @@
         </p>
       </div>
       <div id="copy">
-        <p>Please read the content below carefully and answer the question below it.</p>
+        <div class="explanatory">
+          <p>Please read the content below carefully and answer the question below it.</p>
+        </div>
         <%= @copy_sample.copy_markup.html_safe %>
 
-        <p>Now, please answer this question to the best of your ability.</p>
-        <% @copy_test.questions.each do |question| %>
-          <p><%= question.question %></p>
-          <%= response_form.fields_for :response_answers, @response.response_answers.build do |response_answer_form| %>
-            <% question.question_answers.each do |question_answer| %>
-              <p>
-                <%= response_answer_form.radio_button :question_answer_id, question_answer.id %>
-                <%= response_answer_form.label :question_answer_id, question_answer.answer, :value => question_answer.id %>
-              </p>
+        <div class="explanatory">
+          <p>Now, please answer this question to the best of your ability.</p>
+          <% @copy_test.questions.each do |question| %>
+            <p><%= question.question %></p>
+            <%= response_form.fields_for :response_answers, @response.response_answers.build do |response_answer_form| %>
+              <% question.question_answers.each do |question_answer| %>
+                <p>
+                  <%= response_answer_form.radio_button :question_answer_id, question_answer.id %>
+                  <%= response_answer_form.label :question_answer_id, question_answer.answer, :value => question_answer.id %>
+                </p>
+              <% end %>
             <% end %>
           <% end %>
-        <% end %>
-        <p class="next-button">
-          <a type="button" class="finish-questions btn btn-lg btn-primary" href="#trust_survey">Next</a>
-        </p>
+        </div>
+          <p class="next-button">
+            <a type="button" class="finish-questions btn btn-lg btn-primary" href="#trust_survey">Next</a>
+          </p>
       </div>
       <div id="trust_survey">
-        <p>Now, please tell us how trustworthy you think this information feels.</p>
+        <div class="explanatory">
+          <p>Now, please tell us how trustworthy you think this information feels.</p>
+        </div>
         <%= @copy_sample.copy_markup.html_safe %>
-        <p>The information above feels very trustworthy.</p>
-        <% trust_ratings.each do |i| %>
-          <%= response_form.radio_button :trust_rating, i[1] %>
-          <%= response_form.label :trust_rating, i[0], :value => i[1] %>
-        <% end %>
+        <div class="explanatory">
+          <p>The information above feels very trustworthy.</p>
+          <% trust_ratings.each do |i| %>
+            <%= response_form.radio_button :trust_rating, i[1] %>
+            <%= response_form.label :trust_rating, i[0], :value => i[1] %>
+          <% end %>
+        </div>
         <p>
           <%= response_form.submit "Save answers", :class => 'btn btn-lg btn-primary' %>
         </p>

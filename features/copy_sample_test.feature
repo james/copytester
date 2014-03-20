@@ -14,5 +14,5 @@ Feature: Viewing Test Sample
     When I choose "A test"
     And I choose "Strongly Agree"
     And I press "Save answers"
-    Then I should see the text "All done"
+    Then I should see the text "all done"
     And "A test" should have been chosen 1 times
