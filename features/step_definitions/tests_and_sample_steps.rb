@@ -4,7 +4,11 @@ end
 
 Given(/^"(.*?)" has a copy sample called "(.*?)" with content "(.*?)"$/) do |copy_test_name, copy_sample_name, copy_sample_content|
   copy_test = CopyTest.find_by_name(copy_test_name)
-  copy_test.copy_samples.create!(:name => copy_sample_name, :copy => copy_sample_content)
+  copy_test.copy_samples.create!(:name => copy_sample_name, :copy => copy_sample_content, :published => true)
+end
+
+Given(/^"(.*?)" is unpublished$/) do |copy_sample_name|
+  CopySample.find_by_name(copy_sample_name).update_attributes(:published => false)
 end
 
 Given(/^"(.*?)" has the question "(.*?)"$/) do |copy_test_name, question|

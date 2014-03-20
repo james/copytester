@@ -3,7 +3,11 @@ class CopySamplesController < ApplicationController
 
   def show
     @copy_sample = @copy_test.copy_samples.find(params[:id])
-    @response = @copy_sample.responses.build
+    if @copy_sample.published?
+      @response = @copy_sample.responses.build
+    else
+      render :text => "This sample is currently unpublished"
+    end
   end
   private
   def find_copy_test

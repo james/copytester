@@ -9,7 +9,7 @@
 
 <% @copy_test.copy_samples.each do |copy_sample| %>
   <div>
-    <h2><%= copy_sample.name %></h2>
+    <h2><%= copy_sample.name %> (<%= copy_sample.published ? "Published" : "Unpublished" %>)</h2>
     <%= copy_sample.copy_markup %>
     <p><%= link_to "edit", edit_admin_copy_test_copy_sample_path(@copy_test, copy_sample) %></p>
   </div>
@@ -19,6 +19,7 @@
 <%= bootstrap_form_for [:admin, @copy_test, @copy_test.copy_samples.build] do |copy_test_form| %>
   <%= copy_test_form.text_field :name %>
   <%= copy_test_form.text_area :copy %>
+  <%= copy_test_form.check_box :published %>
   <%= copy_test_form.submit "Create Copy Sample" %>
 <% end %>
 

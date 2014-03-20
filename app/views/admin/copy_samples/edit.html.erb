@@ -1,7 +1,8 @@
-<h1>Editing <%= @copy_test.name %> > <%= @copy_sample.name %></h1>
+<h1>Editing <%= @copy_test.name %> > <%= @copy_sample.name %> (<%= @copy_sample.published ? "Published" : "Unpublished" %>)</h1>
 
 <%= bootstrap_form_for [:admin, @copy_test, @copy_sample] do |copy_test_form| %>
   <%= copy_test_form.text_field :name %>
   <%= copy_test_form.text_area :copy %>
+  <%= copy_test_form.check_box :published %>
   <%= copy_test_form.submit "Save Copy Sample" %>
 <% end %>

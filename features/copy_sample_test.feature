@@ -16,3 +16,10 @@ Feature: Viewing Test Sample
     And I press "Save answers"
     Then I should see the text "all done"
     And "A test" should have been chosen 1 times
+
+  Scenario: Unpublished sample
+    Given I have a copy test called "Copy Test 1"
+    And "Copy Test 1" has a copy sample called "Copy Sample 1" with content "#This is the test"
+    And "Copy Sample 1" is unpublished
+    When I view Copy Sample "Copy Sample 1"
+    Then I should see the text "This sample is currently unpublished"

@@ -11,12 +11,13 @@ Feature: Admin for copy texts
     And press "Create Copy Test"
     And I follow "edit"
     And fill in "Name" with "Copy 1"
+    And I check "Published"
     And press "Create Copy Sample"
-    Then I should see the text "Test 1"
-    And I should see the text "Copy 1"
+    And I should see the text "Copy 1 (Published)"
+    And I should see the text "Published"
     And fill in "Name" with "Copy 1 edited"
+    And I uncheck "Published"
     And press "Save Copy Sample"
-    Then I should see the text "Test 1"
-    And I should see the text "Copy 1 edited"
+    And I should see the text "Copy 1 edited (Unpublished)"
 
 

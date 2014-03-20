@@ -20,6 +20,14 @@ When /^I choose "([^\"]*)"$/ do |value|
   choose(value) 
 end
 
+When(/^I check "(.*?)"$/) do |field|
+  check(field) 
+end
+
+Then(/^I uncheck "(.*?)"$/) do |field|
+  uncheck(field) 
+end
+
 Then /^I should see the text "([^"]*)"$/ do |text|
   page.should have_content(text)
 end
