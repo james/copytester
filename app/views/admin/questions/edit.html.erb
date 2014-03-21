@@ -1,6 +1,6 @@
 <% breadcrumb @question %>
 
-<h1>Editing <%= @question.question %></h1>
+<h1><%= @question.question %></h1>
 
 <%= bootstrap_form_for [:admin, @copy_test, @question] do |question_form| %>
   <%= question_form.text_field :question %>
@@ -12,11 +12,13 @@
 <% end %>
 
 <h1>Answers</h1>
-<ul>
+<table class="table">
   <% @question.question_answers.each do |answer| %>
-    <li><%= answer.answer %> (<%= link_to "edit", edit_admin_copy_test_question_question_answer_path(@copy_test, @question, answer) %>)</li>
+    <tr>
+      <td><%= answer.answer %> (<%= link_to "edit", edit_admin_copy_test_question_question_answer_path(@copy_test, @question, answer) %>)</td>
+    </tr>
   <% end %>
-</ul>
+</table>
 
 <h2>Add a new answer</h2>
 <%= bootstrap_form_for [:admin, @copy_test, @question, @question.question_answers.build] do |copy_test_form| %>
