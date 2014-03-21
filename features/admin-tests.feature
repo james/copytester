@@ -12,7 +12,7 @@ Feature: Admin Dashboard
     And press "Create Copy Test"
     Then I should see the text "Tests"
     And I should see the text "Test 1"
-    When I follow "edit"
+    When I follow "Edit name"
     And fill in "Test Name" with "Test 1 edited"
     And press "Save Copy Test"
     Then I should see the text "Tests"

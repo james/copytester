@@ -1,4 +1,6 @@
-<h1>Editing <%= @copy_test.name %> > <%= @question.question %></h1>
+<% breadcrumb @question %>
+
+<h1>Editing <%= @question.question %></h1>
 
 <%= bootstrap_form_for [:admin, @copy_test, @question] do |question_form| %>
   <%= question_form.text_field :question %>

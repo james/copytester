@@ -10,7 +10,6 @@ Feature: Admin for questions
     And I follow "New Test"
     And fill in "Name" with "Test 1"
     And press "Create Copy Test"
-    And I follow "edit"
     # create question
     And I fill in "Question" with "Which time period is being referred to?"
     And I press "Create Question"

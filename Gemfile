@@ -25,6 +25,7 @@ gem 'govuk_frontend_toolkit', :git => "https://github.com/alphagov/govuk_fronten
 gem 'redcarpet'
 gem 'bootstrap_form'
 gem 'govuk_template'
+gem "gretel"
 
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

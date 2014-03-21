@@ -9,7 +9,6 @@ Feature: Admin for copy texts
     And I follow "New Test"
     And fill in "Name" with "Test 1"
     And press "Create Copy Test"
-    And I follow "edit"
     And fill in "Name" with "Copy 1"
     And I check "Published"
     And press "Create Copy Sample"

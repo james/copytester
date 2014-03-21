@@ -57,6 +57,9 @@ Copytester::Application.routes.draw do
   namespace :admin do
     root 'copy_tests#index'
     resources :copy_tests do
+      member do
+        get 'results'
+      end
       resources :copy_samples
       resources :questions do
         resources :question_answers

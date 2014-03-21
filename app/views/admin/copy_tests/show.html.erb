@@ -1,38 +1,49 @@
-<h1>Results for <%= @copy_test.name %></h1>
+<% breadcrumb @copy_test %>
+
+<h1><%= @copy_test.name %></h1>
+<p><%= link_to "Edit name", edit_admin_copy_test_path(@copy_test) %></p>
+<p><%= link_to "View results", results_admin_copy_test_path(@copy_test) %></p>
+
+<h2>Copy Texts</h2>
 
 <table class="table">
+<% @copy_test.copy_samples.each do |copy_sample| %>
   <tr>
-    <th>Name</th>
-    <th>Tests done</th>
-    <th>Average Time taken</th>
-    <th>Average Trust Score</th>
-    <% @copy_test.questions.each do |question| %>
-      <th>Correctly answered "<%= question.question %>"</th>
-    <% end %>
+    <td><%= copy_sample.name %></td>
+    <td><%= copy_sample.published ? "Published" : "Unpublished" %></td>
+    <td><%= copy_sample.copy_markup %></td>
+    <td><%= link_to "edit", edit_admin_copy_test_copy_sample_path(@copy_test, copy_sample) %></td>
   </tr>
-  <% @copy_test.copy_samples.each do |copy_sample| %>
+<% end %>
+</table>
+
+<h2>Add new Copy Text</h2>
+<%= bootstrap_form_for [:admin, @copy_test, @copy_test.copy_samples.build] do |copy_test_form| %>
+  <%= copy_test_form.text_field :name %>
+  <%= copy_test_form.text_area :copy %>
+  <%= copy_test_form.check_box :published %>
+  <%= copy_test_form.submit "Create Copy Sample" %>
+<% end %>
+
+<h1>Questions</h1>
+
+<table class="table">
+  <% @copy_test.questions.each do |question| %>
     <tr>
-      <td><strong><%= copy_sample.name %></strong></td>
-      <td><%= copy_sample.responses.count %>
+      <td><%= question.question %></td>
       <td>
-        <% if copy_sample.average_time_taken %>
-          <%= copy_sample.average_time_taken/1000 %> seconds
-        <% else %>
-          N/A
-        <% end %>
-      </td>
-      <td>
-        <%= copy_sample.average_trust_rating || "N/A" %>
-      </td>
-      <% @copy_test.questions.each do |question| %>
-        <td>
-          <% if percentage = copy_sample.correctly_answered_percentage_for_question(question) %>
-            <%= percentage %>%
-          <% else %>
-            N/A
+        <ul>
+          <% question.question_answers.each do |question_answer| %>
+            <li><%= question_answer.answer %></li>
           <% end %>
-        </td>
-      <% end %>
+        </ul>
+      </td>
+      <td><%= link_to "edit", edit_admin_copy_test_question_path(@copy_test, question) %></td>
     </tr>
   <% end %>
 </table>
+
+<%= bootstrap_form_for [:admin, @copy_test, @copy_test.questions.build] do |copy_test_form| %>
+  <%= copy_test_form.text_field :question %>
+  <%= copy_test_form.submit "Create Question" %>
+<% end %>

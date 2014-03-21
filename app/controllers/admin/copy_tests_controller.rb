@@ -5,12 +5,15 @@ class Admin::CopyTestsController < AdminController
   def show
     @copy_test = CopyTest.find(params[:id])    
   end
+  def results
+    @copy_test = CopyTest.find(params[:id])    
+  end
   def new
     @copy_test = CopyTest.new
   end
   def create
     @copy_test = CopyTest.create!(params[:copy_test].permit(:name))
-    redirect_to admin_copy_tests_path
+    redirect_to admin_copy_test_path(@copy_test)
   end
   def edit
     @copy_test = CopyTest.find(params[:id])
@@ -18,6 +21,6 @@ class Admin::CopyTestsController < AdminController
   def update
     @copy_test = CopyTest.find(params[:id])
     @copy_test.update_attributes(params[:copy_test].permit(:name))
-    redirect_to admin_copy_tests_path
+    redirect_to admin_copy_test_path(@copy_test)
   end
 end
