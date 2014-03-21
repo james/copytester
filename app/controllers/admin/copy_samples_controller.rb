@@ -1,4 +1,4 @@
-class Admin::CopySamplesController < ApplicationController
+class Admin::CopySamplesController < AdminController
   before_filter :find_test
   def create
     @copy_sample = @copy_test.copy_samples.build(params[:copy_sample].permit(:name, :copy, :published))

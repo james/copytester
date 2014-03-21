@@ -1,4 +1,4 @@
-class Admin::CopyTestsController < ApplicationController
+class Admin::CopyTestsController < AdminController
   def index
     @copy_tests = CopyTest.all
   end

@@ -1,4 +1,4 @@
-class Admin::QuestionAnswersController < ApplicationController
+class Admin::QuestionAnswersController < AdminController
   before_filter :find_test
   before_filter :find_question
   def create

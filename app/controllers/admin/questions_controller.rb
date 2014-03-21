@@ -1,4 +1,4 @@
-class Admin::QuestionsController < ApplicationController
+class Admin::QuestionsController < AdminController
   before_filter :find_test
   def create
     @question = @copy_test.questions.build(params[:question].permit(:question))
