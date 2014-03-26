@@ -1,47 +1,6 @@
-<% breadcrumb @copy_test %>
-<div class="wrapper">
-  <h1>Editing <%= @copy_test.name %></h1>
-  <%= form_for [:admin, @copy_test] do |copy_test_form| %>
-    <%= copy_test_form.label :name, "Test Name:" %>
-    <%= copy_test_form.text_field :name %>
-    <%= copy_test_form.submit "Save Copy Test" %>
-  <% end %>
-
-  <h2>Copy Texts</h2>
-
-  <% @copy_test.copy_samples.each do |copy_sample| %>
-    <div>
-      <h3><%= copy_sample.name %></h3>
-      <%= copy_sample.copy_markup %>
-      <p><%= link_to "edit", edit_admin_copy_test_copy_sample_path(@copy_test, copy_sample) %></p>
-    </div>
-  <% end %>
-
-  <h3>Add new Copy Text</h3>
-  <%= bootstrap_form_for [:admin, @copy_test, @copy_test.copy_samples.build] do |copy_test_form| %>
-    <%= copy_test_form.text_field :name %>
-    <%= copy_test_form.text_area :copy %>
-    <%= copy_test_form.submit "Create Copy Sample" %>
-  <% end %>
-
-  <h2>Questions</h2>
-
-  <ul>
-    <% @copy_test.questions.each do |question| %>
-      <li>
-        <%= question.question %> (<%= link_to "edit", edit_admin_copy_test_question_path(@copy_test, question) %>)
-        <ul>
-          <% question.question_answers.each do |question_answer| %>
-            <li><%= question_answer.answer %></li>
-          <% end %>
-        </ul>
-      </li>
-    <% end %>
-  </ul>
-
-  <h3>Add new question</h3>
-  <%= bootstrap_form_for [:admin, @copy_test, @copy_test.questions.build] do |copy_test_form| %>
-    <%= copy_test_form.text_field :question %>
-    <%= copy_test_form.submit "Create Question" %>
-  <% end %>
-</div>
+<h1>Editing <%= @copy_test.name %></h1>
+<%= form_for [:admin, @copy_test] do |copy_test_form| %>
+  <%= copy_test_form.label :name, "Test Name:" %>
+  <%= copy_test_form.text_field :name %>
+  <%= copy_test_form.submit "Save Copy Test" %>
+<% end %>

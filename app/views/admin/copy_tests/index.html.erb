@@ -4,7 +4,7 @@
 
 	<ul>
 	  <% @copy_tests.each do |copy_test| %>
-	    <li><%= copy_test.name %> <%= link_to "edit", edit_admin_copy_test_path(copy_test) %> <%= link_to "results", admin_copy_test_path(copy_test) %></li>
+	    <li><%= link_to copy_test.name, admin_copy_test_path(copy_test) %> <%= link_to "results", results_admin_copy_test_path(copy_test) %></li>
 	  <% end %>
 	</ul>
 	<%= link_to "New Test", new_admin_copy_test_path %>

@@ -1,41 +1,42 @@
 <% breadcrumb @copy_test %>
 <div class="wrapper">
-  <h1>Results for <%= @copy_test.name %></h1>
+  <h2>Copy Texts</h2>
+  <%= link_to "Edit name", edit_admin_copy_test_path(@copy_test) %>
 
-  <table class="table">
-    <tr>
-      <th>Name</th>
-      <th>Tests done</th>
-      <th>Average Time taken</th>
-      <th>Average Trust Score</th>
-      <% @copy_test.questions.each do |question| %>
-        <th>Correctly answered "<%= question.question %>"</th>
-      <% end %>
-    </tr>
-    <% @copy_test.copy_samples.each do |copy_sample| %>
-      <tr>
-        <td><strong><%= copy_sample.name %></strong></td>
-        <td><%= copy_sample.responses.count %></td>
-        <td>
-          <% if copy_sample.average_time_taken %>
-            <%= copy_sample.average_time_taken/1000 %> seconds
-          <% else %>
-            N/A
+  <% @copy_test.copy_samples.each do |copy_sample| %>
+    <div>
+      <h3><%= copy_sample.name %></h3>
+      <%= copy_sample.copy_markup %>
+      <p><%= link_to "edit", edit_admin_copy_test_copy_sample_path(@copy_test, copy_sample) %></p>
+    </div>
+  <% end %>
+
+  <h3>Add new Copy Text</h3>
+  <%= bootstrap_form_for [:admin, @copy_test, @copy_test.copy_samples.build] do |copy_test_form| %>
+    <%= copy_test_form.text_field :name %>
+    <%= copy_test_form.check_box :published %>
+    <%= copy_test_form.text_area :copy %>
+    <%= copy_test_form.submit "Create Copy Sample" %>
+  <% end %>
+
+  <h2>Questions</h2>
+
+  <ul>
+    <% @copy_test.questions.each do |question| %>
+      <li>
+        <%= question.question %> (<%= link_to "edit", edit_admin_copy_test_question_path(@copy_test, question) %>)
+        <ul>
+          <% question.question_answers.each do |question_answer| %>
+            <li><%= question_answer.answer %></li>
           <% end %>
-        </td>
-        <td>
-          <%= copy_sample.average_trust_rating || "N/A" %>
-        </td>
-        <% @copy_test.questions.each do |question| %>
-          <td>
-            <% if percentage = copy_sample.correctly_answered_percentage_for_question(question) %>
-              <%= percentage %>%
-            <% else %>
-              N/A
-            <% end %>
-          </td>
-        <% end %>
-      </tr>
+        </ul>
+      </li>
     <% end %>
-  </table>
+  </ul>
+
+  <h3>Add new question</h3>
+  <%= bootstrap_form_for [:admin, @copy_test, @copy_test.questions.build] do |copy_test_form| %>
+    <%= copy_test_form.text_field :question %>
+    <%= copy_test_form.submit "Create Question" %>
+  <% end %>
 </div>
