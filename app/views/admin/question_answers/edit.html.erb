@@ -1,6 +1,7 @@
 <% breadcrumb @question_answer %>
-
-<%= bootstrap_form_for [:admin, @copy_test, @question, @question_answer] do |copy_test_form| %>
-  <%= copy_test_form.text_field :answer %>
-  <%= copy_test_form.submit "Save Answer" %>
-<% end %>
+<div class="wrapper">
+	<%= bootstrap_form_for [:admin, @copy_test, @question, @question_answer] do |copy_test_form| %>
+	  <%= copy_test_form.text_field :answer %>
+	  <%= copy_test_form.submit "Save Answer" %>
+	<% end %>
+</div>

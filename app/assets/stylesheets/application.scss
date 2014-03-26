@@ -1,0 +1,88 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+@import '_typography';
+@import '_colours';
+@import 'design-patterns/_buttons';
+
+h1 {
+  @include bold-36;
+  margin-top: 45px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  @include bold-24;
+  margin-top: 45px;
+  margin-bottom: 20px;
+}
+
+h3 {
+  @include bold-19;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+p {
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+.wrapper {
+  max-width: 960px;
+  margin: 0 auto 50px;
+  padding: 0.5em 15px;
+  @include core-19;
+}
+
+.text {
+  max-width: 30em;
+}
+
+.text-indent {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border-left: 5px solid #dee0e2;
+  padding-left: 15px;
+  margin: 30px 20px 30px 0;
+}
+
+.question {
+  font-weight: bold;
+}
+
+.btn{
+  @include button;
+  @include bold-19;
+  // line-height: 0.66667;
+}
+
+.form-checkbox {
+  clear: both;
+}
+
+.block-label {
+  display: inline-block;
+  padding: 13px 20px 10px 10px;
+  background: #dee0e2;
+  margin: 0 0 15px 0;
+}
+
+// .button-secondary{
+//   @include button($grey-3);
+// }
+// .button-warning{
+//   @include button($red);
+// }
