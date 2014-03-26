@@ -1,23 +1,25 @@
-<h1>Editing <%= @copy_test.name %> > <%= @question.question %></h1>
+<div class="wrapper">
+  <h1>Editing <%= @copy_test.name %> > <%= @question.question %></h1>
 
-<%= bootstrap_form_for [:admin, @copy_test, @question] do |question_form| %>
-  <%= question_form.text_field :question %>
-  <p>Correct Answer:</p>
-  <% @question.question_answers.each do |question_answer| %>
-    <%= question_form.radio_button :correct_question_answer_id, question_answer.id, label: question_answer.answer %>
+  <%= bootstrap_form_for [:admin, @copy_test, @question] do |question_form| %>
+    <%= question_form.text_field :question %>
+    <p>Correct Answer:</p>
+    <% @question.question_answers.each do |question_answer| %>
+      <%= question_form.radio_button :correct_question_answer_id, question_answer.id, label: question_answer.answer %>
+    <% end %>
+    <%= question_form.submit "Save Question" %>
   <% end %>
-  <%= question_form.submit "Save Question" %>
-<% end %>
 
-<h1>Answers</h1>
-<ul>
-  <% @question.question_answers.each do |answer| %>
-    <li><%= answer.answer %> (<%= link_to "edit", edit_admin_copy_test_question_question_answer_path(@copy_test, @question, answer) %>)</li>
+  <h1>Answers</h1>
+  <ul>
+    <% @question.question_answers.each do |answer| %>
+      <li><%= answer.answer %> (<%= link_to "edit", edit_admin_copy_test_question_question_answer_path(@copy_test, @question, answer) %>)</li>
+    <% end %>
+  </ul>
+
+  <h2>Add a new answer</h2>
+  <%= bootstrap_form_for [:admin, @copy_test, @question, @question.question_answers.build] do |copy_test_form| %>
+    <%= copy_test_form.text_field :answer %>
+    <%= copy_test_form.submit "Create Answer" %>
   <% end %>
-</ul>
-
-<h2>Add a new answer</h2>
-<%= bootstrap_form_for [:admin, @copy_test, @question, @question.question_answers.build] do |copy_test_form| %>
-  <%= copy_test_form.text_field :answer %>
-  <%= copy_test_form.submit "Create Answer" %>
-<% end %>
+</div>

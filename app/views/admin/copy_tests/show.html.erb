@@ -1,38 +1,40 @@
-<h1>Results for <%= @copy_test.name %></h1>
+<div class="wrapper">
+  <h1>Results for <%= @copy_test.name %></h1>
 
-<table class="table">
-  <tr>
-    <th>Name</th>
-    <th>Tests done</th>
-    <th>Average Time taken</th>
-    <th>Average Trust Score</th>
-    <% @copy_test.questions.each do |question| %>
-      <th>Correctly answered "<%= question.question %>"</th>
-    <% end %>
-  </tr>
-  <% @copy_test.copy_samples.each do |copy_sample| %>
+  <table class="table">
     <tr>
-      <td><strong><%= copy_sample.name %></strong></td>
-      <td><%= copy_sample.responses.count %>
-      <td>
-        <% if copy_sample.average_time_taken %>
-          <%= copy_sample.average_time_taken/1000 %> seconds
-        <% else %>
-          N/A
-        <% end %>
-      </td>
-      <td>
-        <%= copy_sample.average_trust_rating || "N/A" %>
-      </td>
+      <th>Name</th>
+      <th>Tests done</th>
+      <th>Average Time taken</th>
+      <th>Average Trust Score</th>
       <% @copy_test.questions.each do |question| %>
+        <th>Correctly answered "<%= question.question %>"</th>
+      <% end %>
+    </tr>
+    <% @copy_test.copy_samples.each do |copy_sample| %>
+      <tr>
+        <td><strong><%= copy_sample.name %></strong></td>
+        <td><%= copy_sample.responses.count %></td>
         <td>
-          <% if percentage = copy_sample.correctly_answered_percentage_for_question(question) %>
-            <%= percentage %>%
+          <% if copy_sample.average_time_taken %>
+            <%= copy_sample.average_time_taken/1000 %> seconds
           <% else %>
             N/A
           <% end %>
         </td>
-      <% end %>
-    </tr>
-  <% end %>
-</table>
+        <td>
+          <%= copy_sample.average_trust_rating || "N/A" %>
+        </td>
+        <% @copy_test.questions.each do |question| %>
+          <td>
+            <% if percentage = copy_sample.correctly_answered_percentage_for_question(question) %>
+              <%= percentage %>%
+            <% else %>
+              N/A
+            <% end %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+</div>
