@@ -1,6 +1,8 @@
-<h1>Editing <%= @copy_test.name %></h1>
-<%= form_for [:admin, @copy_test] do |copy_test_form| %>
-  <%= copy_test_form.label :name, "Test Name:" %>
-  <%= copy_test_form.text_field :name %>
-  <%= copy_test_form.submit "Save Copy Test" %>
-<% end %>
+<div class="wrapper">
+  <h1>Editing <%= @copy_test.name %></h1>
+  <%= form_for [:admin, @copy_test] do |copy_test_form| %>
+    <%= copy_test_form.label :name, "Test Name:" %>
+    <%= copy_test_form.text_field :name %>
+    <%= copy_test_form.submit "Save Copy Test" %>
+  <% end %>
+</div>
