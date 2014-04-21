@@ -26,6 +26,7 @@ gem 'redcarpet'
 gem 'bootstrap_form'
 gem 'govuk_template'
 gem "gretel"
+gem 'randumb'
 
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
